@@ -54,7 +54,7 @@
         "src/design-pattern/templates/*"
       ],
       "@/api/*": [
-        "src/api/*"
+        "src/services/*"
       ]
     },
     "strict": false

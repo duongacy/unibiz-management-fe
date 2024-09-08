@@ -19,29 +19,27 @@ export const api = {
         searchParams.append(key, params[key].toString())
       }
       return this.instance.get(`${url}?${searchParams.toString()}`)
-      //   return response.data
     } catch (error) {
       console.error(error)
     }
   },
   async post(url: string, payload: Record<string, number | string>) {
     try {
-      const response = await this.instance.post(url, JSON.stringify(payload))
-      return response
+      return this.instance.post(url, JSON.stringify(payload))
     } catch (error) {
       console.error(error)
     }
   },
   async put(url: string, payload: Record<string, number | string>) {
     try {
-      return await api.instance.put(url, payload)
+      return this.instance.put(url, payload)
     } catch (error) {
       console.error(error)
     }
   },
   async delete(url: string) {
     try {
-      return await api.instance.delete(url)
+      return this.instance.delete(url)
     } catch (error) {
       console.error(error)
     }

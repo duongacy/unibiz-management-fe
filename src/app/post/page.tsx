@@ -5,7 +5,7 @@ import {
   useDeletePostMutation,
   usePutPostMutation,
 } from '@/api/post/mutations'
-import { useAllPostsQuery, usePostById } from '@/api/post/queries'
+import { useAllPostsQuery, usePostById } from 'src/services/post/queries'
 
 export default function Page() {
   const postByIdQuery = usePostById(1)
