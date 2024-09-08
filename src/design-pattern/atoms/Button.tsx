@@ -1,14 +1,16 @@
+/* eslint-disable react/display-name */
 import { cn } from '@/utils/cn'
-import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
+import {
+  Button as HeadlessButton,
+  ButtonProps as HeadlessButtonProps,
+} from '@headlessui/react'
+import { forwardRef } from 'react'
 
 /* =================OutlineButton====================== */
 type OutlineButtonColor = 'slate' | 'white'
-type OutlineButtonProps = {
+interface OutlineButtonProps extends HeadlessButtonProps {
   color?: OutlineButtonColor
-} & DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->
+}
 
 export const outlineButtonClassName = (color?: OutlineButtonColor) => {
   color ??= 'slate'
@@ -25,22 +27,23 @@ export const outlineButtonClassName = (color?: OutlineButtonColor) => {
   )
 }
 
-export const OutlineButton = ({
-  className,
-  color,
-  ...props
-}: OutlineButtonProps) => {
-  return <button className={outlineButtonClassName(color)} {...props} />
-}
+export const OutlineButton = forwardRef<HTMLButtonElement, OutlineButtonProps>(
+  ({ className, color, ...props }, ref) => {
+    return (
+      <HeadlessButton
+        ref={ref}
+        className={cn(outlineButtonClassName(color), className)}
+        {...props}
+      />
+    )
+  },
+)
 
 /* =================SolidButton====================== */
 type SolidButtonColor = 'slate' | 'blue' | 'white'
-type SolidButtonProps = {
+interface SolidButtonProps extends HeadlessButtonProps {
   color?: SolidButtonColor
-} & DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->
+}
 
 export const solidButtonClassName = (color?: SolidButtonColor) => {
   color ??= 'slate'
@@ -60,10 +63,14 @@ export const solidButtonClassName = (color?: SolidButtonColor) => {
     },
   )
 }
-export const SolidButton = ({
-  className,
-  color,
-  ...props
-}: SolidButtonProps) => {
-  return <button className={solidButtonClassName(color)} {...props} />
-}
+export const SolidButton = forwardRef<HTMLButtonElement, SolidButtonProps>(
+  ({ className, color, ...props }, ref) => {
+    return (
+      <HeadlessButton
+        ref={ref}
+        className={cn(solidButtonClassName(color), className)}
+        {...props}
+      />
+    )
+  },
+)

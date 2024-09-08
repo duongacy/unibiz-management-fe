@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { addPost, deletePost, putPost } from './fetch'
+import { addPost, deletePost, putPost } from './axios'
 import { QUERY_KEYS } from '../urls'
 
 export const useAddPostMutation = () => {
@@ -10,13 +10,11 @@ export const useAddPostMutation = () => {
       */
     mutationFn: addPost,
     onSettled: async (res) => {
-      if (res.status === 0) {
-        /* Khi thêm thất bại */
-        return
+      if (res.status === 200) {
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.ALL_POSTS],
+        })
       }
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.ALL_POSTS],
-      })
     },
   })
 }
@@ -26,21 +24,19 @@ export const usePutPostMutation = () => {
   return useMutation({
     mutationFn: putPost,
     onSettled: async (res) => {
-      if (res.status === 0) {
-        /* Khi edit thất bại */
-        return
+      if (res.status === 200) {
+        /* Khi update dữ liệu, thì 1 list tất cả các posts đều phải được invalidate lại,
+          trường hợp này thường là 1 table chứa tất cả post (useAllPostsQuery)
+        */
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.ALL_POSTS],
+        })
+        /* 1 record data cụ thể sẽ được invalidate lại, 
+       trường hợp này thường là 1 trang detail đang hiển thị (usePostById)*/
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.POST_BY_ID, res.result.id],
+        })
       }
-      /* Khi update dữ liệu, thì 1 list tất cả các posts đều phải được invalidate lại,
-        trường hợp này thường là 1 table chứa tất cả post (useAllPostsQuery)
-      */
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.ALL_POSTS],
-      })
-      /* 1 record data cụ thể sẽ được invalidate lại, 
-      trường hợp này thường là 1 trang detail đang hiển thị (usePostById)*/
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.POST_BY_ID, res.data.id],
-      })
     },
   })
 }
@@ -50,21 +46,19 @@ export const useDeletePostMutation = () => {
   return useMutation({
     mutationFn: deletePost,
     onSettled: async (res) => {
-      if (res.status === 0) {
-        /* Khi xoá thất bại */
-        return
+      if (res.status === 200) {
+        /* Khi update dữ liệu, thì 1 list tất cả các posts đều phải được invalidate lại,
+          trường hợp này thường là 1 table chứa tất cả post (useAllPostsQuery)
+        */
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.ALL_POSTS],
+        })
+        /* 1 record data cụ thể sẽ được invalidate lại, 
+        trường hợp này thường là 1 trang detail đang hiển thị (usePostById)*/
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.POST_BY_ID, res.result?.id],
+        })
       }
-      /* Khi update dữ liệu, thì 1 list tất cả các posts đều phải được invalidate lại,
-        trường hợp này thường là 1 table chứa tất cả post (useAllPostsQuery)
-      */
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.ALL_POSTS],
-      })
-      /* 1 record data cụ thể sẽ được invalidate lại, 
-      trường hợp này thường là 1 trang detail đang hiển thị (usePostById)*/
-      queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.POST_BY_ID, res.data.id],
-      })
     },
   })
 }

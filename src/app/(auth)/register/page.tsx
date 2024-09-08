@@ -1,16 +1,20 @@
-import { type Metadata } from 'next'
+'use client'
+
 import Link from 'next/link'
-
-import { SlimTemplate } from '@/dp__templates/SlimTemplate'
-import { SelectField, TextField } from '@/dp__atoms/Fields'
-import { Logo } from '@/dp__atoms/Logo'
 import { SolidButton } from '@/dp__atoms/Button'
-
-export const metadata: Metadata = {
-  title: 'Sign Up',
-}
+import { Input } from '@/dp__atoms/Input'
+import { Logo } from '@/dp__atoms/Logo'
+import { Select } from '@/dp__atoms/Select'
+import { InputField } from '@/dp__molecules/InputField'
+import { SlimTemplate } from '@/dp__templates/SlimTemplate'
+import React, { useEffect } from 'react'
 
 export default function Register() {
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [])
+
   return (
     <SlimTemplate>
       <div className="flex">
@@ -33,55 +37,43 @@ export default function Register() {
       </p>
       <form
         action="#"
-        className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2"
+        className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2"
       >
-        <TextField
+        <InputField
           label="First name"
-          name="first_name"
-          type="text"
-          autoComplete="given-name"
-          required
+          input={<Input placeholder="Enter first name" />}
         />
-        <TextField
+        <InputField
           label="Last name"
-          name="last_name"
-          type="text"
-          autoComplete="family-name"
-          required
+          input={<Input placeholder="Enter last name" />}
         />
-        <TextField
-          className="col-span-full"
+        <InputField
           label="Email address"
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
-        />
-        <TextField
           className="col-span-full"
-          label="Password"
-          name="password"
-          type="password"
-          autoComplete="new-password"
-          required
+          input={<Input placeholder="Enter email address" />}
         />
-        <SelectField
+        <InputField
+          label="Password"
+          className="col-span-full"
+          input={
+            <Input
+              placeholder="Enter password"
+              type="password"
+              ref={inputRef}
+            />
+          }
+        />
+        <InputField
           className="col-span-full"
           label="How did you hear about us?"
-          name="referral_source"
-        >
-          <option>AltaVista search</option>
-          <option>Super Bowl commercial</option>
-          <option>Our route 34 city bus ad</option>
-          <option>The “Never Use This” podcast</option>
-        </SelectField>
-        <div className="col-span-full">
-          <SolidButton type="submit" color="blue" className="w-full">
-            <span>
-              Sign up <span aria-hidden="true">&rarr;</span>
-            </span>
-          </SolidButton>
-        </div>
+          input={<Select options={[{ label: 'Active', value: 'active' }]} />}
+        />
+
+        <SolidButton type="button" color="blue" className="col-span-full">
+          <span>
+            Sign up <span aria-hidden="true">&rarr;</span>
+          </span>
+        </SolidButton>
       </form>
     </SlimTemplate>
   )

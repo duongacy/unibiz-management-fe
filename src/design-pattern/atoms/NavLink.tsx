@@ -1,16 +1,23 @@
-import Link from 'next/link'
+import { cn } from '@/utils/cn'
+import Link, { LinkProps } from 'next/link'
 
-export function NavLink({
-  href,
-  children,
-}: {
-  href: string
+export const navLinkClassName = () => {
+  return cn(
+    'inline-block rounded-lg px-2 py-1 text-sm text-slate-700',
+    'hover:bg-slate-100 hover:text-slate-900',
+  )
+}
+
+export interface NavLinkProps extends LinkProps {
   children: React.ReactNode
-}) {
+  className?: string
+}
+
+export function NavLink({ children, className, ...props }: NavLinkProps) {
   return (
     <Link
-      href={href}
-      className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+      className={cn(navLinkClassName(), className)}
+      {...props}
     >
       {children}
     </Link>

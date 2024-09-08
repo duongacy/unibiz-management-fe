@@ -56,7 +56,7 @@ export const TrangTemplate = () => {
               return newValue
             })
           }}
-          className="bg-red-600"
+          className="bg-red-600 lg:hidden"
         >
           Toggle
         </button>

@@ -3,7 +3,7 @@
 import { solidButtonClassName } from '@/dp__atoms/Button'
 import { Logo } from '@/dp__atoms/Logo'
 import { MobileNavLink } from '@/dp__atoms/MobileNavLink'
-import { NavLink } from '@/dp__atoms/NavLink'
+import { NavLink, navLinkClassName } from '@/dp__atoms/NavLink'
 import { cn } from '@/utils/cn'
 import {
   Popover,
@@ -78,7 +78,7 @@ export function Header() {
             <div className="hidden md:flex md:gap-x-6">
               <NavLink href="#features">Features</NavLink>
               <NavLink href="#testimonials">Testimonials</NavLink>
-              <NavLink href="#pricing">Pricing</NavLink>
+              <button className={navLinkClassName()}>Pricing</button>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">

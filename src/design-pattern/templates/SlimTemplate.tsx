@@ -1,6 +1,6 @@
 import Image from 'next/image'
-
 import backgroundImage from '@/images/background-auth.jpg'
+import React from 'react'
 
 export function SlimTemplate({ children }: { children: React.ReactNode }) {
   return (

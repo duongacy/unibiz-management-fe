@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getAllPosts, getPostById } from './fetch'
+import { getAllPosts, getPostById } from './axios'
 import { QUERY_KEYS } from '../urls'
 
 export const useAllPostsQuery = () => {

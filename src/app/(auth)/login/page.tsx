@@ -1,16 +1,35 @@
+'use client'
+import { api } from '@/api/axios'
 import { SolidButton } from '@/dp__atoms/Button'
-import { TextField } from '@/dp__atoms/Fields'
+import { Input } from '@/dp__atoms/Input'
 import { Logo } from '@/dp__atoms/Logo'
+import { InputField } from '@/dp__molecules/InputField'
 import { SlimTemplate } from '@/dp__templates/SlimTemplate'
-import { cn } from '@/utils/cn'
-import { type Metadata } from 'next'
+import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
+import * as zod from 'zod'
 
-export const metadata: Metadata = {
-  title: 'Sign In',
-}
+const loginFormSchema = zod.object({
+  email: zod.string().email({ message: 'Invalid email address' }),
+  password: zod
+    .string()
+    .min(8, { message: 'Password must be at least 8 characters' }),
+})
+
+export type LoginFormData = zod.infer<typeof loginFormSchema>
+const loginFormDataDefault: LoginFormData = { email: '', password: '' }
 
 export default function Login() {
+  const loginForm = useForm<LoginFormData>({
+    values: loginFormDataDefault,
+    resolver: zodResolver(loginFormSchema),
+  })
+  const handleSubmitError: SubmitErrorHandler<LoginFormData> = (data) => {
+  }
+  const handleSubmit: SubmitHandler<LoginFormData> = (data) => {
+    api.post('/login', data)
+  }
   return (
     <SlimTemplate>
       <div className="flex">
@@ -31,28 +50,36 @@ export default function Login() {
         </Link>{' '}
         for a free trial.
       </p>
-      <form action="#" className="mt-10 grid grid-cols-1 gap-y-8">
-        <TextField
+      <form
+        className="mt-10 grid grid-cols-1 gap-y-8"
+        onSubmit={loginForm.handleSubmit(handleSubmit, handleSubmitError)}
+      >
+        <InputField
           label="Email address"
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
+          input={
+            <Input
+              placeholder="Email address"
+              {...loginForm.register('email')}
+            />
+          }
+          error={loginForm.formState.errors?.email?.message}
         />
-        <TextField
+        <InputField
           label="Password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          required
+          input={
+            <Input
+              placeholder="Password"
+              type="password"
+              {...loginForm.register('password')}
+            />
+          }
+          error={loginForm.formState.errors?.password?.message}
         />
-        <div>
-          <SolidButton type="submit" color="blue" className="w-full">
-            <span>
-              Sign in <span aria-hidden="true">&rarr;</span>
-            </span>
-          </SolidButton>
-        </div>
+        <SolidButton type="submit" color="blue" className="w-full">
+          <span>
+            Sign in <span aria-hidden="true">&rarr;</span>
+          </span>
+        </SolidButton>
       </form>
     </SlimTemplate>
   )
