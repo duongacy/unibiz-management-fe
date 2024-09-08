@@ -53,7 +53,7 @@
       "@/dp__templates/*": [
         "src/design-pattern/templates/*"
       ],
-      "@/api/*": [
+      "@/services/*": [
         "src/services/*"
       ]
     },

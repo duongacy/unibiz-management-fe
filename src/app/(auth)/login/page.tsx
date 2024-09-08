@@ -1,5 +1,5 @@
 'use client'
-import { api } from '@/api/axios'
+import { api } from '@/services/axios'
 import { SolidButton } from '@/dp__atoms/Button'
 import { Input } from '@/dp__atoms/Input'
 import { Logo } from '@/dp__atoms/Logo'

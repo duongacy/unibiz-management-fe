@@ -56,7 +56,7 @@ export const useDeletePostMutation = () => {
         /* 1 record data cụ thể sẽ được invalidate lại, 
         trường hợp này thường là 1 trang detail đang hiển thị (usePostById)*/
         queryClient.invalidateQueries({
-          queryKey: [QUERY_KEYS.POST_BY_ID, res.result?.id],
+          queryKey: [QUERY_KEYS.POST_BY_ID, res.result.id],
         })
       }
     },

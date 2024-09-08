@@ -124,7 +124,7 @@ export const deletePost = async (id: string | number) => {
       status: response.status,
       statusText: response.statusText,
       result: {
-        id: parseToNumber(response.data.id, 0),
+        id: Number(id),
       },
     }
     return result

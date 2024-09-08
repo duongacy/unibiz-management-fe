@@ -4,7 +4,7 @@ import {
   useAddPostMutation,
   useDeletePostMutation,
   usePutPostMutation,
-} from '@/api/post/mutations'
+} from '@/services/post/mutations'
 import { useAllPostsQuery, usePostById } from 'src/services/post/queries'
 
 export default function Page() {
