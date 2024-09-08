@@ -85,9 +85,9 @@ const refreshToken = () => {
 api.instance.interceptors.request.use(
   async (config: any) => {
     const accessToken = localStorage.getItem('accessToken')
-    config.headers['Authorization'] = `Bearer ${accessToken}`
     // Check if need to refresh token
     if (!needRefreshToken(accessToken)) {
+      config.headers['Authorization'] = `Bearer ${accessToken}`
       return config
     }
 
