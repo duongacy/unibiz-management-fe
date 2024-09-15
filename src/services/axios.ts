@@ -1,17 +1,23 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import { set } from 'react-hook-form'
+import axios from 'axios'
 import { URLS } from './urls'
 
 declare global {
   interface Window {
-    isRefreshing: boolean
+    tokenRefetching: boolean
   }
 }
 // Create an Axios instance with default configuration
 export const api = {
+  setToken() {
+    const token = localStorage.getItem('token')
+    this.instance.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  },
   instance: axios.create({
     baseURL: URLS.BASE,
   }),
   async get(url: string, params?: Record<string, number | string>) {
+    this.setToken()
     params ??= {}
     try {
       const searchParams = new URLSearchParams()
@@ -24,6 +30,7 @@ export const api = {
     }
   },
   async post(url: string, payload: Record<string, number | string>) {
+    this.setToken()
     try {
       return this.instance.post(url, JSON.stringify(payload))
     } catch (error) {
@@ -31,6 +38,7 @@ export const api = {
     }
   },
   async put(url: string, payload: Record<string, number | string>) {
+    this.setToken()
     try {
       return this.instance.put(url, payload)
     } catch (error) {
@@ -38,6 +46,7 @@ export const api = {
     }
   },
   async delete(url: string) {
+    this.setToken()
     try {
       return this.instance.delete(url)
     } catch (error) {
@@ -46,63 +55,31 @@ export const api = {
   },
 }
 
-const needRefreshToken = (accessToken: string) => {
-  return false
-}
-
-const refreshToken = () => {
-  if (window.isRefreshing) {
-    // khi dang refresh token thi khong can phai refresh token nua
-    return
-  }
-  window.isRefreshing = true
-  // Call api refresh token
-  api
-    .post('/refresh-token', {
-      refreshToken: localStorage.getItem('refreshToken'),
-    })
-    .then((response) => {
-      const newAccessToken = response.data.accessToken
-      const newRefreshToken = response.data.refreshToken
-      // Dispatch event tokenRefreshed
-      const event = new CustomEvent('tokenRefreshed', {
-        detail: { accessToken: newAccessToken, refreshToken: newRefreshToken },
-      })
-      window.dispatchEvent(event)
-    })
-    .catch((error) => {
-      console.error('Refresh Token Error:', error)
-      const event = new Event('logout')
-      window.dispatchEvent(event)
-    })
-    .finally(() => {
-      // Reset isRefreshing
-      window.isRefreshing = false
-    })
-}
-
 // Interceptor to log request and response
 api.instance.interceptors.request.use(
   async (config: any) => {
-    const accessToken = localStorage.getItem('accessToken')
-    // Check if need to refresh token
-    if (!needRefreshToken(accessToken)) {
-      config.headers['Authorization'] = `Bearer ${accessToken}`
-      return config
-    }
+    return config
+    // return new Promise((resolve, reject) => {
+    //   checkConfig('')
 
-    return new Promise((resolve) => {
-      refreshToken()
-      // doi su kien tokenRefreshed duoc goi moi resolve
-      window.addEventListener('tokenRefreshed', (event: any) => {
-        const newToken = event.detail.accessToken
-        const newRefreshToken = event.detail.accessToken
-        localStorage.setItem('accessToken', newToken)
-        localStorage.setItem('refreshToken', newRefreshToken)
-        config.headers['Authorization'] = `Bearer ${newToken}`
-        resolve(config)
-      })
-    })
+    //   window.addEventListener(
+    //     'tokenOk',
+    //     (event: CustomEvent<{ token: string }>) => {
+    //       const token = event.detail.token
+    //       config.headers['Authorization'] = `Bearer ${token}`
+    //       api.token = token
+    //       console.log('Refresh token ok')
+    //       resolve(config)
+    //     },
+    //   )
+
+    //   window.addEventListener('tokenFail', () => {
+    //     const event = new CustomEvent('logout')
+    //     window.dispatchEvent(event)
+    //     console.error('Refresh token failed')
+    //     reject(new Error('Token is invalid'))
+    //   })
+    // })
   },
   (error) => {
     console.error('Request Error:', error)
@@ -115,6 +92,9 @@ api.instance.interceptors.response.use(
     return response
   },
   (error) => {
+    if (error?.response?.statusText === 'Unauthorized') {
+      window.dispatchEvent(new CustomEvent('forceLogin'))
+    }
     return Promise.reject(error)
   },
 )

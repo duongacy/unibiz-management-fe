@@ -1,6 +1,6 @@
 export const URLS = {
-  BASE: 'https://jsonplaceholder.typicode.com',
-  POSTS: 'posts',
+  BASE: '.',
+  POSTS: '/api/posts',
 }
 
 export const QUERY_KEYS = {

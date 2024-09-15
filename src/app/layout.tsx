@@ -1,9 +1,9 @@
-import { type Metadata } from 'next'
-import { Inter, Lexend } from 'next/font/google'
-
+import { AuthProvider } from '@/providers/AuthenProvider'
+import { ReactQueryProvider } from '@/providers/ReactQueryProvider'
 import '@/styles/tailwind.css'
 import { cn } from '@/utils/cn'
-import { ReactQueryProvider } from '@/providers/ReactQueryProvider'
+import { type Metadata } from 'next'
+import { Inter, Lexend } from 'next/font/google'
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +41,9 @@ export default function RootLayout({
       )}
     >
       <body className="flex h-full flex-col">
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   )

@@ -1,34 +1,57 @@
 'use client'
-import { api } from '@/services/axios'
 import { SolidButton } from '@/dp__atoms/Button'
 import { Input } from '@/dp__atoms/Input'
 import { Logo } from '@/dp__atoms/Logo'
 import { InputField } from '@/dp__molecules/InputField'
 import { SlimTemplate } from '@/dp__templates/SlimTemplate'
+import { AuthContext } from '@/providers/AuthenProvider'
+import { useLoginMutation } from '@/services/authen/mutations'
+import { SignInPayload } from '@/services/authen/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { useContext } from 'react'
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
 import * as zod from 'zod'
 
 const loginFormSchema = zod.object({
-  email: zod.string().email({ message: 'Invalid email address' }),
+  username: zod
+    .string()
+    .min(3, { message: 'Username must be at least 3 characters' }),
   password: zod
     .string()
-    .min(8, { message: 'Password must be at least 8 characters' }),
+    .min(3, { message: 'Password must be at least 3 characters' }),
 })
 
 export type LoginFormData = zod.infer<typeof loginFormSchema>
-const loginFormDataDefault: LoginFormData = { email: '', password: '' }
+const loginFormDataDefault: LoginFormData = {
+  username: 'admin',
+  password: 'admin',
+}
 
 export default function Login() {
+  const { handleLoginSuccess } = useContext(AuthContext)!
   const loginForm = useForm<LoginFormData>({
     values: loginFormDataDefault,
     resolver: zodResolver(loginFormSchema),
   })
-  const handleSubmitError: SubmitErrorHandler<LoginFormData> = (data) => {
+  const loginMutation = useLoginMutation()
+
+  const handleSubmitError: SubmitErrorHandler<LoginFormData> = (error) => {
+    console.log('Login error:', error)
   }
-  const handleSubmit: SubmitHandler<LoginFormData> = (data) => {
-    api.post('/login', data)
+  const handleSubmit: SubmitHandler<LoginFormData> = async (data) => {
+    const payload: SignInPayload = {
+      username: data.username,
+      password: data.password,
+    }
+    try {
+      const result = await loginMutation.mutateAsync(payload)
+      if (result.status === 200) {
+        handleLoginSuccess(result.data.token)
+      }
+    } catch (error) {
+      console.log('Login error:', error)
+    }
   }
   return (
     <SlimTemplate>
@@ -59,10 +82,10 @@ export default function Login() {
           input={
             <Input
               placeholder="Email address"
-              {...loginForm.register('email')}
+              {...loginForm.register('username')}
             />
           }
-          error={loginForm.formState.errors?.email?.message}
+          error={loginForm.formState.errors?.username?.message}
         />
         <InputField
           label="Password"

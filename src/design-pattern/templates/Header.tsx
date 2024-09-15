@@ -13,6 +13,8 @@ import {
 } from '@headlessui/react'
 import Link from 'next/link'
 import { Container } from './Container'
+import { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '@/providers/AuthenProvider'
 
 function MobileNavIcon({ open }: { open: boolean }) {
   return (
@@ -60,13 +62,15 @@ function MobileNavigation() {
         <MobileNavLink href="#testimonials">Testimonials</MobileNavLink>
         <MobileNavLink href="#pricing">Pricing</MobileNavLink>
         <hr className="m-2 border-slate-300/40" />
-        <MobileNavLink href="/login">Sign in</MobileNavLink>
+        <MobileNavLink href="/sign-in">Sign in</MobileNavLink>
       </PopoverPanel>
     </Popover>
   )
 }
 
 export function Header() {
+  const { isLoggedIn, handleLogout } = useContext(AuthContext)!
+
   return (
     <header className="py-10">
       <Container>
@@ -76,16 +80,22 @@ export function Header() {
               <Logo />
             </Link>
             <div className="hidden md:flex md:gap-x-6">
-              <NavLink href="#features">Features</NavLink>
-              <NavLink href="#testimonials">Testimonials</NavLink>
+              <NavLink href="/">Home</NavLink>
+              <NavLink href="/posts">Posts</NavLink>
               <button className={navLinkClassName()}>Pricing</button>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             <div className="hidden md:block">
-              <NavLink href="/login">Sign in</NavLink>
+              {isLoggedIn ? (
+                <button className={navLinkClassName()} onClick={handleLogout}>
+                  Logout
+                </button>
+              ) : (
+                <NavLink href="/sign-in">Sign in</NavLink>
+              )}
             </div>
-            <Link href="/register" className={solidButtonClassName('blue')}>
+            <Link href="/register" className={solidButtonClassName()}>
               <span>
                 Get started <span className="hidden lg:inline">today</span>
               </span>

@@ -5,10 +5,11 @@
 */
 import { parseToNumber } from '@/utils/number'
 import { parseToString } from '@/utils/string'
+import { AxiosResponse } from 'axios'
+import { api } from '../axios'
 import { WithResponse } from '../types'
 import { URLS } from '../urls'
 import { Post, POSTPostPayload, PUTPostPayload } from './types'
-import { api } from '../axios'
 
 const postPlaceholder: Post = {
   body: '',
@@ -18,49 +19,22 @@ const postPlaceholder: Post = {
 }
 
 export const getAllPosts = async () => {
-  let rs: WithResponse<Post[]> = {
-    status: 0,
-    statusText: '',
-    result: null,
-  }
   try {
-    const response = await api.get(URLS.POSTS)
-    return {
-      status: response.status,
-      statusText: response.statusText,
-      result: (response.data || []).map((item) => ({
-        id: parseToNumber(item.id, postPlaceholder.id),
-        title: parseToString(item.title, postPlaceholder.title),
-        body: parseToString(item.body, postPlaceholder.body),
-        userId: parseToNumber(item.userId, postPlaceholder.userId),
-      })),
-    }
+    const response: AxiosResponse<Post[]> = await api.get(URLS.POSTS)
+    return response
   } catch (error) {
-    return rs
+    throw new Error(error)
   }
 }
 
 export const getPostById = async (id: string | number) => {
-  let rs: WithResponse<Post> = {
-    status: 0,
-    statusText: '',
-    result: null,
-  }
   try {
-    const response = await api.get(`${URLS.POSTS}/${id}`)
-    rs = {
-      status: response.status,
-      statusText: response.statusText,
-      result: {
-        id: parseToNumber(response.data.id, postPlaceholder.id),
-        title: parseToString(response.data.title, postPlaceholder.title),
-        body: parseToString(response.data.body, postPlaceholder.body),
-        userId: parseToNumber(response.data.userId, postPlaceholder.userId),
-      },
-    }
-    return rs
+    const response: AxiosResponse<Post> = await api.get(
+      `${URLS.POSTS}/details/${id}`,
+    )
+    return response
   } catch (error) {
-    return rs
+    throw new Error(error)
   }
 }
 
@@ -68,7 +42,7 @@ export const addPost = async (payload: POSTPostPayload) => {
   let rs: WithResponse<Post> = {
     status: 0,
     statusText: '',
-    result: null,
+    result: undefined,
   }
   try {
     const response = await api.post(URLS.POSTS, payload)
@@ -92,7 +66,7 @@ export const putPost = async (payload: PUTPostPayload) => {
   let rs: WithResponse<Post> = {
     status: 0,
     statusText: '',
-    result: null,
+    result: undefined,
   }
   try {
     const response = await api.put(`${URLS.POSTS}/${payload.id}`, payload)
@@ -116,7 +90,7 @@ export const deletePost = async (id: string | number) => {
   let result: WithResponse<{ id: number }> = {
     status: 0,
     statusText: '',
-    result: null,
+    result: undefined,
   }
   try {
     const response = await api.delete(`${URLS.POSTS}/${id}`)

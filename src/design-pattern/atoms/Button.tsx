@@ -45,8 +45,8 @@ interface SolidButtonProps extends HeadlessButtonProps {
   color?: SolidButtonColor
 }
 
-export const solidButtonClassName = (color?: SolidButtonColor) => {
-  color ??= 'slate'
+export const solidButtonClassName = (solidButtonProps?: SolidButtonProps) => {
+  const color = solidButtonProps?.color || 'slate'
   return cn(
     'group inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
     {
@@ -61,14 +61,16 @@ export const solidButtonClassName = (color?: SolidButtonColor) => {
       'bg-white text-slate-900 hover:bg-blue-50 focus-visible:outline-white active:bg-blue-200 active:text-slate-600':
         color === 'white',
     },
+    { 'pointer-events-none opacity-70 ': solidButtonProps?.disabled },
   )
 }
+
 export const SolidButton = forwardRef<HTMLButtonElement, SolidButtonProps>(
-  ({ className, color, ...props }, ref) => {
+  ({ className, ...props }, ref) => {
     return (
       <HeadlessButton
         ref={ref}
-        className={cn(solidButtonClassName(color), className)}
+        className={cn(solidButtonClassName(props), className)}
         {...props}
       />
     )

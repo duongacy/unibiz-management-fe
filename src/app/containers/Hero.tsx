@@ -8,6 +8,7 @@ import logoTransistor from '@/images/logos/transistor.svg'
 import logoTuple from '@/images/logos/tuple.svg'
 import {
   outlineButtonClassName,
+  SolidButton,
   solidButtonClassName,
 } from '@/dp__atoms/Button'
 import { Container } from '@/dp__templates/Container'
@@ -36,7 +37,8 @@ export function Hero() {
         opposite trade-off, and hope you don’t get audited.
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
-        <Link href="/register" className={solidButtonClassName('slate')}>
+        {/* <SolidButton>Get started</SolidButton> */}
+        <Link href="/register" className={solidButtonClassName()}>
           Get 6 months free
         </Link>
         <Link

@@ -57,7 +57,8 @@
         "src/services/*"
       ]
     },
-    "strict": false
+    "strict": false,
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
