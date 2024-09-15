@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 
 export const TrangTemplate = () => {
   const [collapse, setCollapse] = useState(false)
-  const [show, setShow] = useState(true)
-  const showPrevRef = useRef<boolean | null>()
+  const [show, setShow] = useState<boolean | null>(true)
+  const showPrevRef = useRef<boolean | null>(null)
   useEffect(() => {
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 768) {

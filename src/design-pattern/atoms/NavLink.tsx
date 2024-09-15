@@ -15,10 +15,7 @@ export interface NavLinkProps extends LinkProps {
 
 export function NavLink({ children, className, ...props }: NavLinkProps) {
   return (
-    <Link
-      className={cn(navLinkClassName(), className)}
-      {...props}
-    >
+    <Link className={cn(navLinkClassName(), className)} {...props}>
       {children}
     </Link>
   )

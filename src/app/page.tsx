@@ -13,7 +13,7 @@ import { Testimonials } from './containers/Testimonials'
 export default function Home() {
   const allPostQuery = useAllPostsQuery()
   const postByIdQuery = usePostById(2)
-  
+
   useEffect(() => {
     console.log('allPostQuery:', allPostQuery.data?.data?.[0]?.title)
   }, [allPostQuery.data])

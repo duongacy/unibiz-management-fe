@@ -31,7 +31,7 @@ export function CallToAction() {
           </p>
           <Link
             href="/register"
-            className={cn(solidButtonClassName('white'), 'mt-10')}
+            className={cn(solidButtonClassName({ color: 'white' }), 'mt-10')}
           >
             Get 6 months free
           </Link>

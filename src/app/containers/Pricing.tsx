@@ -108,7 +108,7 @@ function Plan({
         className={cn(
           'mt-8',
           featured
-            ? solidButtonClassName('white')
+            ? solidButtonClassName({ color: 'white' })
             : outlineButtonClassName('white'),
         )}
         aria-label={`Get started with the ${name} plan for ${price}`}
