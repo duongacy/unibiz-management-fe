@@ -4,6 +4,7 @@ import { solidButtonClassName } from '@/dp__atoms/Button'
 import { Logo } from '@/dp__atoms/Logo'
 import { MobileNavLink } from '@/dp__atoms/MobileNavLink'
 import { NavLink, navLinkClassName } from '@/dp__atoms/NavLink'
+import { AuthContext } from '@/providers/AuthenProvider'
 import { cn } from '@/utils/cn'
 import {
   Popover,
@@ -12,9 +13,8 @@ import {
   PopoverPanel,
 } from '@headlessui/react'
 import Link from 'next/link'
+import { useContext } from 'react'
 import { Container } from './Container'
-import { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '@/providers/AuthenProvider'
 
 function MobileNavIcon({ open }: { open: boolean }) {
   return (
@@ -87,13 +87,15 @@ export function Header() {
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             <div className="hidden md:block">
-              {isLoggedIn ? (
-                <button className={navLinkClassName()} onClick={handleLogout}>
-                  Logout
-                </button>
-              ) : (
-                <NavLink href="/sign-in">Sign in</NavLink>
-              )}
+              <button
+                className={cn(navLinkClassName(), { hidden: !isLoggedIn })}
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+              <NavLink href="/sign-in" className={cn({ hidden: isLoggedIn })}>
+                Sign in
+              </NavLink>
             </div>
             <Link href="/register" className={solidButtonClassName()}>
               <span>
