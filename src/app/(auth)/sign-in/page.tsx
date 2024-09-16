@@ -34,6 +34,7 @@ export default function Login() {
     values: loginFormDataDefault,
     resolver: zodResolver(loginFormSchema),
   })
+
   const loginMutation = useLoginMutation()
 
   const handleSubmitError: SubmitErrorHandler<LoginFormData> = (error) => {
@@ -98,7 +99,12 @@ export default function Login() {
           }
           error={loginForm.formState.errors?.password?.message}
         />
-        <SolidButton type="submit" color="blue" className="w-full">
+        <SolidButton
+          type="submit"
+          color="blue"
+          className="w-full"
+          disabled={loginMutation.isPending}
+        >
           <span>
             Sign in <span aria-hidden="true">&rarr;</span>
           </span>

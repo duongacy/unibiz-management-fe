@@ -7,19 +7,23 @@ export default function handler(
   res: NextApiResponse<BE_Post | null>,
 ) {
   try {
+    // Only allow GET requests
     if (req.method !== 'GET') {
       res.status(405).json(null)
       return
     }
 
+    // Find the post by id
     const post = data.find((post) => post.id === Number(req.query.id))
-    if (!post) {
-      res.status(404).json(null)
+    if (post) {
+      res.status(200).json(post)
       return
     }
 
-    res.status(200).json(post)
+    // If the post wasn't found, return 404
+    res.status(404).json(null)
   } catch (error) {
+    // Handle any errors
     res.status(500).json(null)
   }
 }

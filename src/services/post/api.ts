@@ -5,7 +5,7 @@ import { Post } from './types'
 
 export const getAllPosts = async () => {
   try {
-    const response: AxiosResponse<Post[]> = await api.get(URLS.POSTS)
+    const response: AxiosResponse<Post[] | null> = await api.get(URLS.POSTS)
     return response
   } catch (error) {
     throw new Error(error)
@@ -14,7 +14,7 @@ export const getAllPosts = async () => {
 
 export const getPostById = async (id: string | number) => {
   try {
-    const response: AxiosResponse<Post> = await api.get(
+    const response: AxiosResponse<Post | null> = await api.get(
       `${URLS.POSTS}/details/${id}`,
     )
     return response
