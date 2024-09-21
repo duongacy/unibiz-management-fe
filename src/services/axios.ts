@@ -1,6 +1,4 @@
-import { set } from 'react-hook-form'
 import axios from 'axios'
-import { URLS } from './urls'
 
 declare global {
   interface Window {
@@ -14,7 +12,7 @@ export const api = {
     this.instance.defaults.headers.common['Authorization'] = `Bearer ${token}`
   },
   instance: axios.create({
-    baseURL: URLS.BASE,
+    baseURL: 'http://localhost:3000',
   }),
   async get(url: string, params?: Record<string, number | string>) {
     this.setToken()
@@ -41,6 +39,18 @@ export const api = {
     this.setToken()
     try {
       return this.instance.put(url, payload)
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  async upload(url: string, payload: BlobPart) {
+    this.setToken()
+    try {
+      return this.instance.post(url, payload, {
+        headers: {
+          'Content-Type': 'application/octet-stream',
+        },
+      })
     } catch (error) {
       console.error(error)
     }

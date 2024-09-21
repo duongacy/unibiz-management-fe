@@ -1,6 +1,7 @@
 export const URLS = {
   BASE: '.',
   POSTS: '/api/posts',
+  UPLOAD_IMAGE: '/api/media/upload-image',
 }
 
 export const QUERY_KEYS = {
