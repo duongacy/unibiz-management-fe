@@ -1,6 +1,10 @@
 import headlessuiPlugin from '@headlessui/tailwindcss'
 import formsPlugin from '@tailwindcss/forms'
 import { type Config } from 'tailwindcss'
+import {
+  scopedPreflightStyles,
+  isolateInsideOfContainer,
+} from 'tailwindcss-scoped-preflight'
 
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -27,11 +31,20 @@ export default {
       fontFamily: {
         sans: 'var(--font-inter)',
         display: 'var(--font-lexend)',
+        Source_Code_Pro: 'var(--font-Source_Code_Pro)',
       },
       maxWidth: {
         '2xl': '40rem',
       },
     },
   },
-  plugins: [formsPlugin, headlessuiPlugin],
+  plugins: [
+    formsPlugin,
+    headlessuiPlugin,
+    scopedPreflightStyles({
+      isolationStrategy: isolateInsideOfContainer('', {
+        except: '.no-twp', // optional, to exclude some elements under .twp from being preflighted, like external markup
+      }),
+    }),
+  ],
 } satisfies Config

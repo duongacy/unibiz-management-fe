@@ -3,7 +3,7 @@ import { ReactQueryProvider } from '@/providers/ReactQueryProvider'
 import '@/styles/tailwind.css'
 import { cn } from '@/utils/cn'
 import { type Metadata } from 'next'
-import { Inter, Lexend } from 'next/font/google'
+import { Inter, Lexend, Acme, AR_One_Sans, Source_Code_Pro } from 'next/font/google'
 
 export const metadata: Metadata = {
   title: {
@@ -26,6 +26,12 @@ const lexend = Lexend({
   variable: '--font-lexend',
 })
 
+const Source_Code_Pro_variables = Source_Code_Pro({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-Source_Code_Pro',
+})
+
 export default function RootLayout({
   children,
 }: {
@@ -38,6 +44,7 @@ export default function RootLayout({
         'h-full scroll-smooth bg-white antialiased',
         inter.variable,
         lexend.variable,
+        Source_Code_Pro_variables.variable,
       )}
     >
       <body className="flex h-full flex-col">

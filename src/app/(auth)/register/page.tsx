@@ -28,7 +28,7 @@ export default function Register() {
       <p className="mt-2 text-sm text-gray-700">
         Already registered?{' '}
         <Link
-          href="/login"
+          href="/sign-in"
           className="font-medium text-blue-600 hover:underline"
         >
           Sign in

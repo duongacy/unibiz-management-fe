@@ -81,7 +81,10 @@ export function Header() {
             </Link>
             <div className="hidden md:flex md:gap-x-6">
               <NavLink href="/">Home</NavLink>
-              <NavLink href="/posts">Posts</NavLink>
+              <NavLink href="/lifecycle">Lifecycle</NavLink>
+              <NavLink href="/usereducer">useReducer</NavLink>
+              <NavLink href="/context">context</NavLink>
+              <NavLink href="/key">key</NavLink>
               <button className={navLinkClassName()}>Pricing</button>
             </div>
           </div>
