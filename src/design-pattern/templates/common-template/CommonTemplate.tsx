@@ -1,11 +1,7 @@
 import { Footer } from './Footer'
 import { Header } from './Header'
 
-export function ManagementTemplate({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export function CommonTemplate({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />

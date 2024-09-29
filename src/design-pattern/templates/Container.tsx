@@ -5,5 +5,5 @@ export function Container({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'div'>) {
-  return <div className={cn(containerClassName, className)} {...props} />
+  return <div className={cn(containerClassName(), className)} {...props} />
 }

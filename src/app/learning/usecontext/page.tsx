@@ -1,5 +1,5 @@
 'use client'
-import { ManagementTemplate } from '@/dp__templates/ManagementTemplate'
+import { CommonTemplate } from '@/dp__templates/common-template/CommonTemplate'
 import {
   createContext,
   Dispatch,

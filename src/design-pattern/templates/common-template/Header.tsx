@@ -7,14 +7,20 @@ import { NavLink, navLinkClassName } from '@/dp__atoms/NavLink'
 import { AuthContext } from '@/providers/AuthenProvider'
 import { cn } from '@/utils/cn'
 import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
   Popover,
   PopoverBackdrop,
   PopoverButton,
   PopoverPanel,
 } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import Link from 'next/link'
-import { useContext } from 'react'
-import { Container } from './Container'
+import { usePathname } from 'next/navigation'
+import { Fragment, memo, useContext } from 'react'
+import { Container } from '../Container'
 
 function MobileNavIcon({ open }: { open: boolean }) {
   return (
@@ -70,22 +76,33 @@ function MobileNavigation() {
 
 export function Header() {
   const { isLoggedIn, handleLogout } = useContext(AuthContext)!
+  const pathname = usePathname()
 
   return (
-    <header className="py-10">
+    <header className="py-10 shadow-lg">
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
             <Link href="#" aria-label="Home">
               <Logo />
             </Link>
-            <div className="hidden md:flex md:gap-x-6">
-              <NavLink href="/">Home</NavLink>
-              <NavLink href="/lifecycle">Lifecycle</NavLink>
-              <NavLink href="/usereducer">useReducer</NavLink>
-              <NavLink href="/context">context</NavLink>
-              <NavLink href="/key">key</NavLink>
-              <button className={navLinkClassName()}>Pricing</button>
+            <div className="flex gap-x-2">
+              <MenuWithOptions
+                label="Xúc tiến thương mại"
+                options={tradeLinks}
+              />
+              <MenuWithOptions
+                label="Xúc tiến đầu tư"
+                options={investmentLinks}
+              />
+              <MenuWithOptions
+                label="Quản trị doanh nghiệp"
+                options={businessManagementLinks}
+              />
+              <MenuWithOptions label="Tin tức" options={newsLinks} />
+              <NavLink href="/contact" active={pathname === '/contact'}>
+                Liên hệ
+              </NavLink>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
@@ -100,7 +117,7 @@ export function Header() {
                 Sign in
               </NavLink>
             </div>
-            <Link href="/register" className={solidButtonClassName()}>
+            <Link href="/register" className={solidButtonClassName({color:'blue'})}>
               <span>
                 Get started <span className="hidden lg:inline">today</span>
               </span>
@@ -114,3 +131,66 @@ export function Header() {
     </header>
   )
 }
+
+const tradeLinks = [
+  { href: '/trade/buy', label: 'Cần mua' },
+  { href: '/trade/sell', label: 'Cần bán' },
+]
+const investmentLinks = [
+  { href: '/investment/call', label: 'Gọi đầu tư' },
+  { href: '/investment/recieve', label: 'Nhận đầu tư' },
+]
+const businessManagementLinks = [
+  { href: '/business-management/finance', label: 'Tài chính' },
+  { href: '/business-management/legal', label: 'Pháp lý' },
+  { href: '/business-management/martech', label: 'Martech ' },
+]
+const newsLinks = [
+  { href: '/news/events', label: 'Sự kiện' },
+  { href: '/news/cafe-f', label: 'CafeF' },
+]
+
+interface MenuWithOptionsProps {
+  options: { href: string; label: string }[]
+  label: string
+}
+const MenuWithOptions = memo((props: MenuWithOptionsProps) => {
+  const pathname = usePathname()
+  return (
+    <Menu as={'div'}>
+      <MenuButton as={'button'}>
+        {({ active }) => (
+          <span
+            className={cn(
+              navLinkClassName({
+                active: props.options.some((link) => pathname === link.href),
+              }),
+              'flex items-center gap-2',
+            )}
+          >
+            {props.label}
+            <ChevronDownIcon
+              className={cn('ml-1 h-4 w-4 transition-transform', {
+                'rotate-180 transform': active,
+              })}
+            />
+          </span>
+        )}
+      </MenuButton>
+      <MenuItems
+        anchor="bottom"
+        className="mt-4 flex min-w-40 flex-col gap-1 rounded-md bg-white p-2 shadow-md"
+      >
+        {props.options.map((link) => (
+          <MenuItem key={link.href} as={Fragment}>
+            {({ focus: _ }) => (
+              <NavLink href={link.href} active={pathname === link.href}>
+                {link.label}
+              </NavLink>
+            )}
+          </MenuItem>
+        ))}
+      </MenuItems>
+    </Menu>
+  )
+})

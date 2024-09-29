@@ -1,5 +1,5 @@
 'use client'
-import { ManagementTemplate } from '@/dp__templates/ManagementTemplate'
+import { CommonTemplate } from '@/dp__templates/common-template/CommonTemplate'
 import { useAllPostsQuery, usePostById } from '@/services/post/queries'
 import { useEffect } from 'react'
 import { CallToAction } from './containers/CallToAction'
@@ -22,7 +22,7 @@ export default function Home() {
     console.log('postByIdQuery:', postByIdQuery.data?.data?.title)
   }, [postByIdQuery.data])
   return (
-    <ManagementTemplate>
+    <CommonTemplate>
       <main>
         <Hero />
         <PrimaryFeatures />
@@ -32,6 +32,6 @@ export default function Home() {
         <Pricing />
         <Faqs />
       </main>
-    </ManagementTemplate>
+    </CommonTemplate>
   )
 }

@@ -46,5 +46,6 @@ export default {
         except: '.no-twp', // optional, to exclude some elements under .twp from being preflighted, like external markup
       }),
     }),
+    require('@tailwindcss/aspect-ratio'),
   ],
 } satisfies Config

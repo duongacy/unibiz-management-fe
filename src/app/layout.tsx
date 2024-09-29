@@ -1,9 +1,16 @@
+import { CommonTemplate } from '@/dp__templates/common-template/CommonTemplate'
 import { AuthProvider } from '@/providers/AuthenProvider'
 import { ReactQueryProvider } from '@/providers/ReactQueryProvider'
 import '@/styles/tailwind.css'
 import { cn } from '@/utils/cn'
 import { type Metadata } from 'next'
-import { Inter, Lexend, Acme, AR_One_Sans, Source_Code_Pro } from 'next/font/google'
+import {
+  Inter,
+  Lexend,
+  Acme,
+  AR_One_Sans,
+  Source_Code_Pro,
+} from 'next/font/google'
 
 export const metadata: Metadata = {
   title: {
@@ -49,7 +56,9 @@ export default function RootLayout({
     >
       <body className="flex h-full flex-col">
         <ReactQueryProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <CommonTemplate>{children}</CommonTemplate>
+          </AuthProvider>
         </ReactQueryProvider>
       </body>
     </html>
