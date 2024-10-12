@@ -60,10 +60,9 @@ export const button = (...params: Parameters<typeof buttonCva>) => {
   return cn(buttonCva(...params))
 }
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof button>
 
-// eslint-disable-next-line react/display-name
 export const Button: React.FC<ButtonProps> = memo(
   forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, intent, size, rounded, ...props }, ref) => (

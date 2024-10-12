@@ -61,10 +61,8 @@ export const nextLink = (...params: Parameters<typeof nextLinkCva>) => {
   return cn(nextLinkCva(...params))
 }
 
-// eslint-disable-next-line react/display-name
 type NextLinkProps = LinkProps &
   VariantProps<typeof nextLink> & { className?: string; children: ReactNode }
-// eslint-disable-next-line react/display-name
 export const NextLink = memo(
   forwardRef<HTMLAnchorElement, NextLinkProps>(
     ({ className, intent, size, ...props }, ref) => {
