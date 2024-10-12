@@ -5,5 +5,5 @@ interface LogoProps {
 }
 
 export function Logo({ className }: LogoProps) {
-  return <div className={cn('h-14 w-36 bg-blue-600', className)}></div>
+  return <div className={cn('h-14 w-36 bg-primary-600', className)}></div>
 }

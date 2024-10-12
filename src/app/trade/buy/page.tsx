@@ -7,7 +7,7 @@ export default function Page() {
         <h2 className="text-base/7 font-semibold text-indigo-600">
           Chúng tôi cần mua
         </h2>
-        <p className="mt-2 max-w-lg text-pretty text-4xl font-medium text-gray-950 sm:text-5xl">
+        <p className="mt-2 max-w-lg text-pretty text-4xl font-medium text-neutral-950 sm:text-5xl">
           Những sản phẩm thương mại chúng tôi cần mua
         </p>
         <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
@@ -23,10 +23,10 @@ export default function Page() {
                 <h3 className="text-sm/4 font-semibold text-indigo-600">
                   Performance
                 </h3>
-                <p className="mt-2 text-lg/7 font-medium tracking-tight text-gray-950">
+                <p className="mt-2 text-lg/7 font-medium tracking-tight text-neutral-950">
                   Lightning-fast builds
                 </p>
-                <p className="mt-2 max-w-lg text-sm/6 text-gray-600">
+                <p className="mt-2 max-w-lg text-sm/6 text-neutral-600">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                   gravida justo et nulla efficitur, maximus egestas sem
                   pellentesque.
@@ -47,10 +47,10 @@ export default function Page() {
                 <h3 className="text-sm/4 font-semibold text-indigo-600">
                   Releases
                 </h3>
-                <p className="mt-2 text-lg/7 font-medium tracking-tight text-gray-950">
+                <p className="mt-2 text-lg/7 font-medium tracking-tight text-neutral-950">
                   Push to deploy
                 </p>
-                <p className="mt-2 max-w-lg text-sm/6 text-gray-600">
+                <p className="mt-2 max-w-lg text-sm/6 text-neutral-600">
                   Curabitur auctor, ex quis auctor venenatis, eros arcu rhoncus
                   massa, laoreet dapibus ex elit vitae odio.
                 </p>
@@ -70,10 +70,10 @@ export default function Page() {
                 <h3 className="text-sm/4 font-semibold text-indigo-600">
                   Speed
                 </h3>
-                <p className="mt-2 text-lg/7 font-medium tracking-tight text-gray-950">
+                <p className="mt-2 text-lg/7 font-medium tracking-tight text-neutral-950">
                   Built for power users
                 </p>
-                <p className="mt-2 max-w-lg text-sm/6 text-gray-600">
+                <p className="mt-2 max-w-lg text-sm/6 text-neutral-600">
                   Sed congue eros non finibus molestie. Vestibulum euismod
                   augue.
                 </p>
@@ -93,10 +93,10 @@ export default function Page() {
                 <h3 className="text-sm/4 font-semibold text-indigo-600">
                   Integrations
                 </h3>
-                <p className="mt-2 text-lg/7 font-medium tracking-tight text-gray-950">
+                <p className="mt-2 text-lg/7 font-medium tracking-tight text-neutral-950">
                   Connect your favorite tools
                 </p>
-                <p className="mt-2 max-w-lg text-sm/6 text-gray-600">
+                <p className="mt-2 max-w-lg text-sm/6 text-neutral-600">
                   Maecenas at augue sed elit dictum vulputate, in nisi aliquam
                   maximus arcu.
                 </p>
@@ -116,10 +116,10 @@ export default function Page() {
                 <h3 className="text-sm/4 font-semibold text-indigo-600">
                   Network
                 </h3>
-                <p className="mt-2 text-lg/7 font-medium tracking-tight text-gray-950">
+                <p className="mt-2 text-lg/7 font-medium tracking-tight text-neutral-950">
                   Globally distributed CDN
                 </p>
-                <p className="mt-2 max-w-lg text-sm/6 text-gray-600">
+                <p className="mt-2 max-w-lg text-sm/6 text-neutral-600">
                   Aenean vulputate justo commodo auctor vehicula in malesuada
                   semper.
                 </p>

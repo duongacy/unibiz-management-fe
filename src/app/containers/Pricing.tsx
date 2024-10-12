@@ -2,10 +2,7 @@ import clsx from 'clsx'
 import { Container } from '@/dp__templates/Container'
 import { cn } from '@/utils/cn'
 import Link from 'next/link'
-import {
-  outlineButtonClassName,
-  solidButtonClassName,
-} from '@/dp__atoms/Button'
+import { button } from '@/dp__atoms/button/button'
 
 function SwirlyDoodle(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -70,7 +67,7 @@ function Plan({
     <section
       className={cn(
         'flex flex-col rounded-3xl px-6 sm:px-8',
-        { 'order-first bg-blue-600 py-8 lg:order-none': featured },
+        { 'order-first bg-primary-600 py-8 lg:order-none': featured },
         { 'lg:py-8': !featured },
       )}
     >
@@ -103,18 +100,6 @@ function Plan({
           </li>
         ))}
       </ul>
-      <Link
-        href={href}
-        className={cn(
-          'mt-8',
-          featured
-            ? solidButtonClassName({ color: 'white' })
-            : outlineButtonClassName('white'),
-        )}
-        aria-label={`Get started with the ${name} plan for ${price}`}
-      >
-        Get started
-      </Link>
     </section>
   )
 }
@@ -130,7 +115,7 @@ export function Pricing() {
         <div className="md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
             <span className="relative whitespace-nowrap">
-              <SwirlyDoodle className="absolute left-0 top-1/2 h-[1em] w-full fill-blue-400" />
+              <SwirlyDoodle className="absolute left-0 top-1/2 h-[1em] w-full fill-primary-400" />
               <span className="relative">Simple pricing,</span>
             </span>{' '}
             for everyone.

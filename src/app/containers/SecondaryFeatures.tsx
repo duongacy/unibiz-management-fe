@@ -123,7 +123,7 @@ function Feature({
     >
       <div
         className={cn('w-9 rounded-lg bg-slate-500', {
-          'bg-blue-600': isActive,
+          'bg-primary-600': isActive,
         })}
       >
         <svg aria-hidden="true" className="h-9 w-9" fill="none">
@@ -132,7 +132,7 @@ function Feature({
       </div>
       <h3
         className={cn('mt-6 text-sm font-medium text-slate-600', {
-          'text-blue-600': isActive,
+          'text-primary-600': isActive,
         })}
       >
         {feature.name}

@@ -35,27 +35,27 @@ export default function Page() {
   }
 
   const sortItems = () => {
-    setItems((prev) => ([...prev.reverse()]))
+    setItems((prev) => [...prev.reverse()])
   }
   return (
-      <div>
-        <h1>Page</h1>
-        <button className="border" onClick={addItem}>
-          Add
-        </button>
-        <button onClick={sortItems}>Sort items</button>
-        <br />
-        {items.map((item, index) => (
-          <div key={index}>
-            {item.name}{' '}
-            <button className="border" onClick={() => updateItem(item.id)}>
-              Update
-            </button>
-            <button className="border" onClick={() => deleteItem(item.id)}>
-              Delete
-            </button>
-          </div>
-        ))}
-      </div>
+    <div>
+      <h1>Page</h1>
+      <button className="border" onClick={addItem}>
+        Add
+      </button>
+      <button onClick={sortItems}>Sort items</button>
+      <br />
+      {items.map((item, index) => (
+        <div key={index}>
+          {item.name}{' '}
+          <button className="border" onClick={() => updateItem(item.id)}>
+            Update
+          </button>
+          <button className="border" onClick={() => deleteItem(item.id)}>
+            Delete
+          </button>
+        </div>
+      ))}
+    </div>
   )
 }

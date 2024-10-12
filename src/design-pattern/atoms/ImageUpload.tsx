@@ -61,7 +61,7 @@ export const ImageUpload = ({
       {label && <label>{label}</label>}
       <label
         className={cn(
-          'relative flex aspect-square h-48 overflow-hidden border border-dashed border-gray-500',
+          'aspect-square relative flex h-48 overflow-hidden border border-dashed border-neutral-500',
           {
             'opacity-40': isPending,
             'border-red-500': isError,

@@ -1,16 +1,17 @@
 import Image from 'next/image'
 
-import { solidButtonClassName } from '@/dp__atoms/Button'
 import { Container } from '@/dp__templates/Container'
 import backgroundImage from '@/images/background-call-to-action.jpg'
 import { cn } from '@/utils/cn'
 import Link from 'next/link'
+import { button } from '@/dp__atoms/button/button'
+import { NextLink } from '@/dp__atoms/link/link'
 
 export function CallToAction() {
   return (
     <section
       id="get-started-today"
-      className="relative overflow-hidden bg-blue-600 py-32"
+      className="relative overflow-hidden bg-primary-600 py-32"
     >
       <Image
         className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
@@ -29,12 +30,9 @@ export function CallToAction() {
             It’s time to take control of your books. Buy our software so you can
             feel like you’re doing something productive.
           </p>
-          <Link
-            href="/register"
-            className={cn(solidButtonClassName({ color: 'white' }), 'mt-10')}
-          >
+          <NextLink href="/register" className={button({ className: 'mt-10' })}>
             Get 6 months free
-          </Link>
+          </NextLink>
         </div>
       </Container>
     </section>

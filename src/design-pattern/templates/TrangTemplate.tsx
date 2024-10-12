@@ -20,7 +20,7 @@ export const TrangTemplate = () => {
     <div className="flex min-h-screen bg-red-400">
       <div
         className={cn(
-          'relative hidden h-full w-14 shrink-0 overflow-hidden bg-gray-800 px-1 py-10 text-white transition-all duration-1000 ease-in-out',
+          'relative hidden h-full w-14 shrink-0 overflow-hidden bg-neutral-800 px-1 py-10 text-white transition-all duration-1000 ease-in-out',
           {
             'w-64': collapse,
             block: show,
@@ -46,7 +46,7 @@ export const TrangTemplate = () => {
         </div>
       </div>
 
-      <div className="grow bg-blue-400 px-8 py-1">
+      <div className="grow bg-primary-400 px-8 py-1">
         <button
           onClick={() => {
             // luu lai gia tri

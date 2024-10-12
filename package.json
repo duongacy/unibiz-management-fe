@@ -1,5 +1,5 @@
 {
-  "name": "tailwindui-salient",
+  "name": "unibiz-management-fe",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -25,6 +25,7 @@
     "@types/react-dom": "^18.2.18",
     "autoprefixer": "^10.4.12",
     "axios": "^1.7.7",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "heroicons": "^2.1.5",
     "markdown-to-jsx": "^7.5.0",

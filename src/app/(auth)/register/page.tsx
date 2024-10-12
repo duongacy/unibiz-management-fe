@@ -1,9 +1,8 @@
 'use client'
 
-import Link from 'next/link'
-import { SolidButton } from '@/dp__atoms/Button'
+import { Button } from '@/dp__atoms/button/button'
 import { Input } from '@/dp__atoms/Input'
-import { Logo } from '@/dp__atoms/Logo'
+import { NextLink } from '@/dp__atoms/link/link'
 import { Select } from '@/dp__atoms/Select'
 import { InputField } from '@/dp__molecules/InputField'
 import { SlimTemplate } from '@/dp__templates/SlimTemplate'
@@ -17,22 +16,14 @@ export default function Register() {
 
   return (
     <SlimTemplate>
-      <div className="flex">
-        <Link href="/" aria-label="Home">
-          <Logo className="h-10 w-auto" />
-        </Link>
-      </div>
-      <h2 className="mt-20 text-lg font-semibold text-gray-900">
+      <h2 className="mt-20 text-lg font-semibold text-neutral-900">
         Get started for free
       </h2>
-      <p className="mt-2 text-sm text-gray-700">
+      <p className="mt-2 text-sm text-neutral-700">
         Already registered?{' '}
-        <Link
-          href="/sign-in"
-          className="font-medium text-blue-600 hover:underline"
-        >
+        <NextLink href="/sign-in" size="small">
           Sign in
-        </Link>{' '}
+        </NextLink>{' '}
         to your account.
       </p>
       <form
@@ -68,12 +59,18 @@ export default function Register() {
           label="How did you hear about us?"
           input={<Select options={[{ label: 'Active', value: 'active' }]} />}
         />
-
-        <SolidButton type="button" color="blue" className="col-span-full">
-          <span>
-            Sign up <span aria-hidden="true">&rarr;</span>
-          </span>
-        </SolidButton>
+        <div className="col-span-full">
+          <Button
+            type="submit"
+            intent="primary"
+            rounded="full"
+            className="w-full"
+          >
+            <span>
+              Sign up <span aria-hidden="true">&rarr;</span>
+            </span>
+          </Button>
+        </div>
       </form>
     </SlimTemplate>
   )

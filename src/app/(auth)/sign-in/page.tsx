@@ -1,14 +1,13 @@
 'use client'
-import { SolidButton } from '@/dp__atoms/Button'
+import { Button } from '@/dp__atoms/button/button'
 import { Input } from '@/dp__atoms/Input'
-import { Logo } from '@/dp__atoms/Logo'
+import { NextLink } from '@/dp__atoms/link/link'
 import { InputField } from '@/dp__molecules/InputField'
 import { SlimTemplate } from '@/dp__templates/SlimTemplate'
 import { AuthContext } from '@/providers/AuthenProvider'
 import { useLoginMutation } from '@/services/authen/mutations'
 import { SignInPayload } from '@/services/authen/types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import Link from 'next/link'
 import { useContext } from 'react'
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
 import * as zod from 'zod'
@@ -56,22 +55,14 @@ export default function Login() {
   }
   return (
     <SlimTemplate>
-      <div className="flex">
-        <Link href="/" aria-label="Home">
-          <Logo className="h-10 w-auto" />
-        </Link>
-      </div>
-      <h2 className="mt-20 text-lg font-semibold text-gray-900">
+      <h2 className="mt-20 text-lg font-semibold text-neutral-900">
         Sign in to your account
       </h2>
-      <p className="mt-2 text-sm text-gray-700">
+      <p className="mt-2 text-sm text-neutral-700">
         Don’t have an account?{' '}
-        <Link
-          href="/register"
-          className="font-medium text-blue-600 hover:underline"
-        >
+        <NextLink href="/register" size="small">
           Sign up
-        </Link>{' '}
+        </NextLink>{' '}
         for a free trial.
       </p>
       <form
@@ -99,16 +90,18 @@ export default function Login() {
           }
           error={loginForm.formState.errors?.password?.message}
         />
-        <SolidButton
-          type="submit"
-          color="blue"
-          className="w-full"
-          disabled={loginMutation.isPending}
-        >
-          <span>
-            Sign in <span aria-hidden="true">&rarr;</span>
-          </span>
-        </SolidButton>
+        <div className="col-span-full">
+          <Button
+            type="submit"
+            intent="primary"
+            rounded="full"
+            className="w-full"
+          >
+            <span>
+              Sign in <span aria-hidden="true">&rarr;</span>
+            </span>
+          </Button>
+        </div>
       </form>
     </SlimTemplate>
   )

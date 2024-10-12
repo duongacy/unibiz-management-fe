@@ -5,6 +5,7 @@ import {
   scopedPreflightStyles,
   isolateInsideOfContainer,
 } from 'tailwindcss-scoped-preflight'
+const colors = require('tailwindcss/colors')
 
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -25,6 +26,11 @@ export default {
       '9xl': ['8rem', { lineHeight: '1' }],
     },
     extend: {
+      colors: {
+        primary: colors.blue,
+        secondary: colors.purple,
+        neutral: colors.gray,
+      },
       borderRadius: {
         '4xl': '2rem',
       },

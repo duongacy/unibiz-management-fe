@@ -60,8 +60,8 @@ export default function Page() {
           <button
             key={t}
             onClick={() => setTopic(t)}
-            className={cn('rounded-md bg-blue-200 px-4 py-2 text-black', {
-              'bg-blue-500 text-white': topic === t,
+            className={cn('rounded-md bg-primary-200 px-4 py-2 text-black', {
+              'bg-primary-500 text-white': topic === t,
             })}
           >
             Listen {t}

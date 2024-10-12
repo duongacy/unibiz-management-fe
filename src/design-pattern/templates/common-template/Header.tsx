@@ -1,6 +1,5 @@
 'use client'
 
-import { solidButtonClassName } from '@/dp__atoms/Button'
 import { Logo } from '@/dp__atoms/Logo'
 import { MobileNavLink } from '@/dp__atoms/MobileNavLink'
 import { NavLink, navLinkClassName } from '@/dp__atoms/NavLink'
@@ -21,6 +20,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Fragment, memo, useContext } from 'react'
 import { Container } from '../Container'
+import { button } from '@/dp__atoms/button/button'
 
 function MobileNavIcon({ open }: { open: boolean }) {
   return (
@@ -117,7 +117,7 @@ export function Header() {
                 Sign in
               </NavLink>
             </div>
-            <Link href="/register" className={solidButtonClassName({color:'blue'})}>
+            <Link href="/register" className={button()}>
               <span>
                 Get started <span className="hidden lg:inline">today</span>
               </span>
@@ -154,6 +154,7 @@ interface MenuWithOptionsProps {
   options: { href: string; label: string }[]
   label: string
 }
+// eslint-disable-next-line react/display-name
 const MenuWithOptions = memo((props: MenuWithOptionsProps) => {
   const pathname = usePathname()
   return (

@@ -64,7 +64,7 @@ export function PrimaryFeatures() {
     <section
       id="features"
       aria-label="Features for running your books"
-      className="relative overflow-hidden bg-blue-600 pb-28 pt-20 sm:py-32"
+      className="relative overflow-hidden bg-primary-600 pb-28 pt-20 sm:py-32"
     >
       <Image
         className="absolute left-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
@@ -79,7 +79,7 @@ export function PrimaryFeatures() {
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
             Everything you need to run your books.
           </h2>
-          <p className="mt-6 text-lg tracking-tight text-blue-100">
+          <p className="mt-6 text-lg tracking-tight text-primary-100">
             Well everything you need if you aren’t that picky about minor
             details like tax compliance.
           </p>
@@ -112,9 +112,9 @@ export function PrimaryFeatures() {
                           className={cn(
                             'font-display text-lg ui-not-focus-visible:outline-none',
                             {
-                              'text-blue-600 lg:text-white':
+                              'text-primary-600 lg:text-white':
                                 selectedIndex === featureIndex,
-                              'text-blue-100 hover:text-white lg:text-white':
+                              'text-primary-100 hover:text-white lg:text-white':
                                 selectedIndex !== featureIndex,
                             },
                           )}
@@ -125,7 +125,7 @@ export function PrimaryFeatures() {
                       </h3>
                       <p
                         className={cn('mt-2 hidden text-sm lg:block', {
-                          'text-blue-100 group-hover:text-white':
+                          'text-primary-100 group-hover:text-white':
                             selectedIndex !== featureIndex,
                           'text-white': selectedIndex === featureIndex,
                         })}
@@ -145,7 +145,7 @@ export function PrimaryFeatures() {
                         {feature.description}
                       </p>
                     </div>
-                    <div className="mt-10 w-[45rem] overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
+                    <div className="mt-10 w-[45rem] overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-primary-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
                       <Image
                         className="w-full"
                         src={feature.image}
