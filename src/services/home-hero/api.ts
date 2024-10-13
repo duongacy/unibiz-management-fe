@@ -1,8 +1,9 @@
-import { defaultImage, safeParse, TImage } from '@/types/common'
+import { defaultImage, TImage } from '@/types/common'
 import axios from 'axios'
 import { THomeHero } from './types'
 import { API_STRAPI_URL } from 'src/consts'
 import { URLS } from '../urls'
+import { safeParse } from '@/utils/safeParse'
 
 export const getHomeHero = async () => {
   try {
