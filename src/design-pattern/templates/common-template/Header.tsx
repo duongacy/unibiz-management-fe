@@ -20,7 +20,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Fragment, memo, useContext } from 'react'
 import { Container } from '../Container'
-import { button } from '@/dp__atoms/button/button'
+import { Button, button } from '@/dp__atoms/button/button'
+import { NextLink } from '@/dp__atoms/link/link'
 
 function MobileNavIcon({ open }: { open: boolean }) {
   return (
@@ -82,11 +83,11 @@ export function Header() {
     <header className="py-10 shadow-lg">
       <Container>
         <nav className="relative z-50 flex justify-between">
-          <div className="flex items-center md:gap-x-12">
+          <div className="flex items-center xl:gap-x-12">
             <Link href="#" aria-label="Home">
               <Logo />
             </Link>
-            <div className="flex gap-x-2">
+            <div className="hidden gap-x-2 xl:flex">
               <MenuWithOptions
                 label="Xúc tiến thương mại"
                 options={tradeLinks}
@@ -106,23 +107,24 @@ export function Header() {
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className="hidden md:block">
-              <button
-                className={cn(navLinkClassName(), { hidden: !isLoggedIn })}
+            <div className="hidden xl:block">
+              <Button
+                intent={'link'}
+                className={cn({ hidden: !isLoggedIn })}
                 onClick={handleLogout}
               >
                 Logout
-              </button>
-              <NavLink href="/sign-in" className={cn({ hidden: isLoggedIn })}>
+              </Button>
+              <NextLink href="/sign-in" className={cn({ hidden: isLoggedIn })}>
                 Sign in
-              </NavLink>
+              </NextLink>
             </div>
-            <Link href="/register" className={button()}>
+            <NextLink href="/register" intent={'primary'} rounded={'full'}>
               <span>
                 Get started <span className="hidden lg:inline">today</span>
               </span>
-            </Link>
-            <div className="-mr-1 md:hidden">
+            </NextLink>
+            <div className="-mr-1 xl:hidden">
               <MobileNavigation />
             </div>
           </div>

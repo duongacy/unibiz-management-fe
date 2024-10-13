@@ -1,6 +1,7 @@
 export const URLS = {
   BASE: '.',
   POSTS: '/api/posts',
+  HOME_HERO: '/api/home-hero?populate=*',
   UPLOAD_IMAGE: '/api/media/upload-image',
 }
 

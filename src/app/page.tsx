@@ -21,6 +21,7 @@ export default function Home() {
   useEffect(() => {
     console.log('postByIdQuery:', postByIdQuery.data?.data?.title)
   }, [postByIdQuery.data])
+
   return (
     <CommonTemplate>
       <main>

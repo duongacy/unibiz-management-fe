@@ -65,11 +65,11 @@ type NextLinkProps = LinkProps &
   VariantProps<typeof nextLink> & { className?: string; children: ReactNode }
 export const NextLink = memo(
   forwardRef<HTMLAnchorElement, NextLinkProps>(
-    ({ className, intent, size, ...props }, ref) => {
+    ({ className, intent, size, rounded, ...props }, ref) => {
       return (
         <Link
           ref={ref}
-          className={nextLink({ intent, size, className })}
+          className={nextLink({ intent, size, rounded, className })}
           {...props}
         />
       )
