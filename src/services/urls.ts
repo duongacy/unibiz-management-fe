@@ -2,6 +2,8 @@ export const URLS = {
   BASE: '.',
   POSTS: '/api/posts',
   HOME_HERO: '/api/home-hero?populate=*',
+  HOME_PRIMARY_FEATURES: '/api/home-primary-feature',
+  HOME_SECONDARY_FEATURES: '/api/home-secondary-feature',
   UPLOAD_IMAGE: '/api/media/upload-image',
 }
 

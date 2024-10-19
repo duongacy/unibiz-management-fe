@@ -11,6 +11,7 @@
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
+    "@babel/preset-react": "^7.25.7",
     "@headlessui/react": "^2.1.0",
     "@headlessui/tailwindcss": "^0.2.0",
     "@heroicons/react": "^2.1.5",
@@ -30,6 +31,7 @@
     "heroicons": "^2.1.5",
     "markdown-to-jsx": "^7.5.0",
     "next": "^14.0.4",
+    "qs": "^6.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.53.0",

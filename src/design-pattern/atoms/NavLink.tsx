@@ -17,6 +17,7 @@ export interface NavLinkProps extends LinkProps {
   active?: boolean
 }
 
+// eslint-disable-next-line react/display-name
 export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
   (props, ref) => {
     const { active, children, className, ...restProps } = props
