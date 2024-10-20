@@ -4,8 +4,18 @@ import axios from 'axios'
 import { API_STRAPI_URL } from 'src/consts'
 import { URLS } from '../urls'
 import { THomeHero } from './types'
+import QueryString from 'qs'
 
 export const getHomeHero = async () => {
+  const query = QueryString.stringify(
+    {
+      populate: ['partnersLogo'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  )
+
   let data
   const defaultData: THomeHero = {
     title: '',
@@ -13,10 +23,10 @@ export const getHomeHero = async () => {
     partnersLabel: '',
     partnersLogo: [],
   }
-  
+
   try {
-    data = (await axios.get(`${API_STRAPI_URL}${URLS.HOME_HERO}?populate=*`))
-      .data?.data
+    data = (await axios.get(`${API_STRAPI_URL}${URLS.HOME_HERO}?${query}`)).data
+      ?.data
   } catch (error) {
     return defaultData
   }

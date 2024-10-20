@@ -4,12 +4,12 @@ import axios from 'axios'
 import QueryString from 'qs'
 import { API_STRAPI_URL } from 'src/consts'
 import { URLS } from '../urls'
-import { THomePrimaryFeatures } from './types'
+import { THomeCTA } from './types'
 
-export const getHomePrimaryFeatures = async () => {
+export const getHomeCTA = async () => {
   const query = QueryString.stringify(
     {
-      populate: ['features.image', 'backgroundImage'],
+      populate: ['backgroundImage'],
     },
     {
       encodeValuesOnly: true,
@@ -17,29 +17,24 @@ export const getHomePrimaryFeatures = async () => {
   )
 
   let data
-  const defaultData: THomePrimaryFeatures = {
+  const defaultData: THomeCTA = {
     title: '',
     description: '',
-    features: [],
     backgroundImage: defaultImage,
+    CTAButtonText: '',
   }
 
   try {
-    data = (
-      await axios.get(`${API_STRAPI_URL}${URLS.HOME_PRIMARY_FEATURES}?${query}`)
-    ).data?.data
+    data = (await axios.get(`${API_STRAPI_URL}${URLS.HOME_CTA}?${query}`)).data
+      ?.data
   } catch (error) {
     return defaultData
   }
 
-  const safeData = safeParse<THomePrimaryFeatures>(data, defaultData)
+  const safeData = safeParse<THomeCTA>(data, defaultData)
   safeData.backgroundImage = safeParse<TImage>(
     data.backgroundImage,
     defaultImage,
   )
-  safeData.features = safeData.features.map((item) => ({
-    ...item,
-    image: safeParse<TImage>(item.image, defaultImage),
-  }))
   return safeData
 }
