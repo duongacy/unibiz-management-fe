@@ -1,22 +1,32 @@
 import { defaultImage, TImage } from '@/types/common'
+import { safeParse } from '@/utils/safeParse'
 import axios from 'axios'
-import { THomeHero } from './types'
 import { API_STRAPI_URL } from 'src/consts'
 import { URLS } from '../urls'
-import { safeParse } from '@/utils/safeParse'
+import { THomeHero } from './types'
 
 export const getHomeHero = async () => {
-  try {
-    const response = await axios.get(`${API_STRAPI_URL}${URLS.HOME_HERO}`)
-    const homeHero = response?.data?.data
-    homeHero.partnersLogo = response.data.data.partnersLogo
-      .map((item) => safeParse<TImage>(item, defaultImage))
-      .map((item) => ({
-        ...item,
-        url: `${API_STRAPI_URL}${item.url}`,
-      }))
-    return homeHero as THomeHero
-  } catch (error) {
-    throw new Error(error)
+  let data
+  const defaultData: THomeHero = {
+    title: '',
+    subTitle: '',
+    partnersLabel: '',
+    partnersLogo: [],
   }
+  
+  try {
+    data = (await axios.get(`${API_STRAPI_URL}${URLS.HOME_HERO}?populate=*`))
+      .data?.data
+  } catch (error) {
+    return defaultData
+  }
+
+  const safeData = safeParse<THomeHero>(data, defaultData)
+  safeData.partnersLogo = safeData.partnersLogo.map((item) =>
+    safeParse<TImage>(
+      { ...item, url: `${API_STRAPI_URL}${item.url}` },
+      defaultImage,
+    ),
+  )
+  return safeData
 }

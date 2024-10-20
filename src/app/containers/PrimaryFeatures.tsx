@@ -1,11 +1,11 @@
 'use client'
 
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
-import Image from 'next/image'
 import { Container } from '@/dp__templates/Container'
 import backgroundImage from '@/images/background-features.jpg'
 import { useHomePrimaryFeatures } from '@/services/home-primary-feature/queries'
 import { cn } from '@/utils/cn'
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
+import Image from 'next/image'
 import { API_STRAPI_URL } from 'src/consts'
 import { useMedia } from 'src/hooks/useMedia'
 

@@ -1,13 +1,10 @@
 'use client'
+import { Container } from '@/dp__templates/Container'
+import { useHomeSecondaryFeatures } from '@/services/home-secondary-feature/queries'
+import { cn } from '@/utils/cn'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import Image, { type ImageProps } from 'next/image'
-import { ReactNode, useId } from 'react'
-import { Container } from '@/dp__templates/Container'
-import screenshotContacts from '@/images/screenshots/contacts.png'
-import screenshotInventory from '@/images/screenshots/inventory.png'
-import screenshotProfitLoss from '@/images/screenshots/profit-loss.png'
-import { cn } from '@/utils/cn'
-import { useHomeSecondaryFeatures } from '@/services/home-secondary-feature/queries'
+import { ReactNode } from 'react'
 import { API_STRAPI_URL } from 'src/consts'
 
 interface Feature {

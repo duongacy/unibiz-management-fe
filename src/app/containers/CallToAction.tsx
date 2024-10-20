@@ -1,11 +1,8 @@
 import Image from 'next/image'
-
-import { Container } from '@/dp__templates/Container'
-import backgroundImage from '@/images/background-call-to-action.jpg'
-import { cn } from '@/utils/cn'
-import Link from 'next/link'
 import { button } from '@/dp__atoms/button/button'
 import { NextLink } from '@/dp__atoms/link/link'
+import { Container } from '@/dp__templates/Container'
+import backgroundImage from '@/images/background-call-to-action.jpg'
 
 export function CallToAction() {
   return (

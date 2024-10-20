@@ -1,26 +1,45 @@
 import { defaultImage, TImage } from '@/types/common'
+import { safeParse } from '@/utils/safeParse'
 import axios from 'axios'
+import QueryString from 'qs'
 import { API_STRAPI_URL } from 'src/consts'
 import { URLS } from '../urls'
-import { safeParse } from '@/utils/safeParse'
 import { THomePrimaryFeatures } from './types'
 
 export const getHomePrimaryFeatures = async () => {
-  const qs = require('qs')
-  const query = qs.stringify(
+  const query = QueryString.stringify(
     {
       populate: ['features.image', 'backgroundImage'],
     },
     {
-      encodeValuesOnly: true, // prettify URL
+      encodeValuesOnly: true,
     },
   )
-  try {
-    const response = await axios.get(
-      `${API_STRAPI_URL}${URLS.HOME_PRIMARY_FEATURES}?${query}`,
-    )
-    return response?.data?.data as THomePrimaryFeatures
-  } catch (error) {
-    throw new Error(error)
+
+  let data
+  const defaultData: THomePrimaryFeatures = {
+    title: '',
+    description: '',
+    features: [],
+    backgroundImage: defaultImage,
   }
+  
+  try {
+    data = (
+      await axios.get(`${API_STRAPI_URL}${URLS.HOME_PRIMARY_FEATURES}?${query}`)
+    ).data?.data
+  } catch (error) {
+    return defaultData
+  }
+
+  const safeData = safeParse<THomePrimaryFeatures>(data, defaultData)
+  safeData.backgroundImage = safeParse<TImage>(
+    data.backgroundImage,
+    defaultImage,
+  )
+  safeData.features = data.features.map((item) => ({
+    ...item,
+    image: safeParse<TImage>(item.image, defaultImage),
+  }))
+  return data
 }

@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import { NextLink } from '@/dp__atoms/link/link'
 import { Container } from '@/dp__templates/Container'
 import { useHomeHero } from '@/services/home-hero/queries'
+import Image from 'next/image'
 
 export function Hero() {
   const homeHero = useHomeHero()
