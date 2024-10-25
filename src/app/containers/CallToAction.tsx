@@ -1,4 +1,3 @@
-import { button } from '@/dp__atoms/button/button'
 import { NextLink } from '@/dp__atoms/link/link'
 import { Container } from '@/dp__templates/Container'
 import { useHomeCTA } from '@/services/home-cta/queries'

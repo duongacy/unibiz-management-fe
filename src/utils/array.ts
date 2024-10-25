@@ -1,7 +1,8 @@
-export function splitArrayIntoPairs<T>(array: T[]): T[][] {
-  const pairs: T[][] = []
-  for (let i = 0; i < array.length; i += 2) {
-    pairs.push([array[i], array[i + 1]])
+export function splitToNArrays<T>(array: T[], n: number): T[][] {
+  const arrays: T[][] = []
+  while (array.length) {
+    arrays.push(array.slice(0, n))
+    array = array.slice(n)
   }
-  return pairs
+  return arrays
 }

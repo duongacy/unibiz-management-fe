@@ -6,6 +6,7 @@ export const URLS = {
   HOME_SECONDARY_FEATURES: '/api/home-secondary-feature',
   HOME_CTA: '/api/home-cta',
   HOME_TESTMONIALS: '/api/home-testimonial',
+  HOME_FAQ: '/api/home-faq',
   UPLOAD_IMAGE: '/api/media/upload-image',
 }
 
@@ -17,4 +18,5 @@ export const QUERY_KEYS = {
   HOME_SECONDARY_FEATURES: 'HOME_SECONDARY_FEATURES',
   HOME_CTA: 'HOME_CTA',
   HOME_TESTMONIALS: 'HOME_TESTMONIALS',
+  HOME_FAQ: 'HOME_FAQ',
 }
