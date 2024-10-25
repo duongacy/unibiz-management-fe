@@ -2,13 +2,13 @@ import { safeParse } from '@/utils/safeParse'
 import axios from 'axios'
 import QueryString from 'qs'
 import { API_STRAPI_URL } from 'src/consts'
-import { URLS } from '../urls'
-import { THomePricing } from './types'
+import { URLS } from '../../urls'
+import { THomeFAQ } from './types'
 
-export const getHomePricing = async () => {
+export const getHomeFAQ = async () => {
   const query = QueryString.stringify(
     {
-      populate: ['prices'],
+      populate: ['faqs'],
     },
     {
       encodeValuesOnly: true,
@@ -16,20 +16,20 @@ export const getHomePricing = async () => {
   )
 
   let data
-  const defaultData: THomePricing = {
+  const defaultData: THomeFAQ = {
     title: '',
     description: '',
-    prices: [],
+    faqs: [],
   }
 
   try {
-    data = (await axios.get(`${API_STRAPI_URL}${URLS.HOME_PRICING}?${query}`)).data
+    data = (await axios.get(`${API_STRAPI_URL}${URLS.HOME_FAQ}?${query}`)).data
       ?.data
   } catch (error) {
     return defaultData
   }
 
-  const safeData = safeParse<THomePricing>(data, defaultData)
+  const safeData = safeParse<THomeFAQ>(data, defaultData)
 
   return safeData
 }

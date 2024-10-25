@@ -1,7 +1,7 @@
 'use client'
 
 import { Container } from '@/dp__templates/Container'
-import { useHomePrimaryFeatures } from '@/services/home-primary-feature/queries'
+import { useHomePrimaryFeatures } from '@/services/home/home-primary-feature/queries'
 import { cn } from '@/utils/cn'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import Image from 'next/image'

@@ -1,6 +1,6 @@
 import { NextLink } from '@/dp__atoms/link/link'
 import { Container } from '@/dp__templates/Container'
-import { useHomeCTA } from '@/services/home-cta/queries'
+import { useHomeCTA } from '@/services/home/home-cta/queries'
 import Image from 'next/image'
 
 export function CallToAction() {

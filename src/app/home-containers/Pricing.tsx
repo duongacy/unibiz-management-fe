@@ -1,5 +1,5 @@
 import { Container } from '@/dp__templates/Container'
-import { useHomePricing } from '@/services/home-pricing/queries'
+import { useHomePricing } from '@/services/home/home-pricing/queries'
 import { cn } from '@/utils/cn'
 
 function SwirlyDoodle(props: React.ComponentPropsWithoutRef<'svg'>) {

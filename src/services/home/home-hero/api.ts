@@ -2,7 +2,7 @@ import { defaultImage, TImage } from '@/types/common'
 import { safeParse } from '@/utils/safeParse'
 import axios from 'axios'
 import { API_STRAPI_URL } from 'src/consts'
-import { URLS } from '../urls'
+import { URLS } from '../../urls'
 import { THomeHero } from './types'
 import QueryString from 'qs'
 

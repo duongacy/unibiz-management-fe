@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getHomeTestimonials } from './api'
-import { QUERY_KEYS } from '../urls'
+import { QUERY_KEYS } from '../../urls'
 
 export const useHomeTestimonials = () => {
   return useQuery({

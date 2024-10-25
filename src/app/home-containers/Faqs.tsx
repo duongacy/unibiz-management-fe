@@ -1,6 +1,6 @@
 import { Container } from '@/dp__templates/Container'
 import backgroundImage from '@/images/background-faqs.jpg'
-import { useHomeFAQ } from '@/services/home-faq/queries'
+import { useHomeFAQ } from '@/services/home/home-faq/queries'
 import { splitToNArrays } from '@/utils/array'
 import { cn } from '@/utils/cn' // Assuming you have a cn utility function
 import Image from 'next/image'

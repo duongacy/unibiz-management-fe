@@ -3,7 +3,7 @@ import { safeParse } from '@/utils/safeParse'
 import axios from 'axios'
 import QueryString from 'qs'
 import { API_STRAPI_URL } from 'src/consts'
-import { URLS } from '../urls'
+import { URLS } from '../../urls'
 import { THomeTestimonials } from './types'
 
 export const getHomeTestimonials = async () => {

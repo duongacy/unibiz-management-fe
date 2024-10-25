@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 import { Container } from '@/dp__templates/Container'
-import { useHomeTestimonials } from '@/services/home-testimonial/queries'
+import { useHomeTestimonials } from '@/services/home/home-testimonial/queries'
 import { splitToNArrays } from '@/utils/array'
 
 function QuoteIcon(props: React.ComponentPropsWithoutRef<'svg'>) {

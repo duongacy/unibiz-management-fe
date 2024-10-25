@@ -1,6 +1,6 @@
 import { NextLink } from '@/dp__atoms/link/link'
 import { Container } from '@/dp__templates/Container'
-import { useHomeHero } from '@/services/home-hero/queries'
+import { useHomeHero } from '@/services/home/home-hero/queries'
 import { cn } from '@/utils/cn'
 import Image from 'next/image'
 
