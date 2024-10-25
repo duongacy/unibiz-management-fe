@@ -33,10 +33,7 @@ export const getHomeHero = async () => {
 
   const safeData = safeParse<THomeHero>(data, defaultData)
   safeData.partnersLogo = safeData.partnersLogo.map((item) =>
-    safeParse<TImage>(
-      { ...item, url: `${API_STRAPI_URL}${item.url}` },
-      defaultImage,
-    ),
+    safeParse<TImage>(item, defaultImage, true),
   )
   return safeData
 }

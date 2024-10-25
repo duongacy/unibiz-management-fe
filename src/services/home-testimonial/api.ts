@@ -5,7 +5,6 @@ import QueryString from 'qs'
 import { API_STRAPI_URL } from 'src/consts'
 import { URLS } from '../urls'
 import { THomeTestimonials } from './types'
-import { url } from 'inspector'
 
 export const getHomeTestimonials = async () => {
   const query = QueryString.stringify(
@@ -35,10 +34,7 @@ export const getHomeTestimonials = async () => {
   const safeData = safeParse<THomeTestimonials>(data, defaultData)
   safeData.testimonials = safeData.testimonials.map((item) => ({
     ...item,
-    avatar: safeParse<TImage>(
-      { ...item.avatar, url: `${API_STRAPI_URL}${item.avatar.url}` },
-      defaultImage,
-    ),
+    avatar: safeParse<TImage>(item.avatar, defaultImage, true),
   }))
 
   return safeData

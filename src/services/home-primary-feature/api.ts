@@ -34,12 +34,13 @@ export const getHomePrimaryFeatures = async () => {
 
   const safeData = safeParse<THomePrimaryFeatures>(data, defaultData)
   safeData.backgroundImage = safeParse<TImage>(
-    data.backgroundImage,
+    safeData.backgroundImage,
     defaultImage,
+    true,
   )
   safeData.features = safeData.features.map((item) => ({
     ...item,
-    image: safeParse<TImage>(item.image, defaultImage),
+    image: safeParse<TImage>(item.image, defaultImage, true),
   }))
   return safeData
 }

@@ -1,12 +1,10 @@
 'use client'
 
 import { Container } from '@/dp__templates/Container'
-import backgroundImage from '@/images/background-features.jpg'
 import { useHomePrimaryFeatures } from '@/services/home-primary-feature/queries'
 import { cn } from '@/utils/cn'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import Image from 'next/image'
-import { API_STRAPI_URL } from 'src/consts'
 import { useMedia } from 'src/hooks/useMedia'
 
 export function PrimaryFeatures() {
@@ -34,7 +32,7 @@ export function PrimaryFeatures() {
     >
       <Image
         className="absolute left-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
-        src={backgroundImage}
+        src={homePrimaryFeaturesData.backgroundImage.url}
         alt=""
         width={2245}
         height={1636}
@@ -128,7 +126,7 @@ export function PrimaryFeatures() {
                         width={feature.image.width}
                         height={feature.image.height}
                         className="w-full"
-                        src={API_STRAPI_URL + feature.image?.url || ''}
+                        src={feature.image?.url || ''}
                         alt=""
                         priority
                         sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"

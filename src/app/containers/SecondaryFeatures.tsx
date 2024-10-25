@@ -5,7 +5,6 @@ import { cn } from '@/utils/cn'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import Image, { type ImageProps } from 'next/image'
 import { ReactNode } from 'react'
-import { API_STRAPI_URL } from 'src/consts'
 
 interface Feature {
   name: React.ReactNode
@@ -166,7 +165,7 @@ function FeaturesMobile() {
               name: feature.name,
               summary: feature.summary,
               description: feature.description,
-              image: API_STRAPI_URL + feature.image.url,
+              image: feature.image.url,
               icon: <ContactsIcon />,
             }}
             className="mx-auto max-w-2xl"
@@ -251,7 +250,7 @@ function FeaturesDesktop() {
                     <div className="w-[52.75rem] overflow-hidden rounded-xl bg-white shadow-lg shadow-slate-900/5 ring-1 ring-slate-500/10">
                       <Image
                         className="w-full"
-                        src={API_STRAPI_URL + feature.image.url}
+                        src={feature.image.url}
                         width={feature.image.width}
                         height={feature.image.height}
                         alt=""

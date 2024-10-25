@@ -36,7 +36,7 @@ export const getHomeSecondaryFeatures = async () => {
   const safeData = safeParse<THomeSecondaryFeatures>(data, defaultData)
   safeData.features = safeData.features.map((item) => ({
     ...item,
-    image: safeParse<TImage>(item.image, defaultImage),
+    image: safeParse<TImage>(item.image, defaultImage, true),
   }))
   return safeData
 }

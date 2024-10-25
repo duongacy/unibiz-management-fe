@@ -35,6 +35,7 @@ export const getHomeCTA = async () => {
   safeData.backgroundImage = safeParse<TImage>(
     data.backgroundImage,
     defaultImage,
+    true,
   )
   return safeData
 }
