@@ -19,6 +19,7 @@ export default function LeaningLayout({
         <NavLink href="/learning/usereducer">useReducer</NavLink>
         <NavLink href="/learning/key">Key</NavLink>
         <NavLink href="/learning/form-handling">Form handling</NavLink>
+        <NavLink href="/learning/english">English</NavLink>
       </div>
       <div className="flex flex-grow flex-col p-2">
         <div className="flex-grow border">{children}</div>

@@ -1,3 +1,4 @@
+import { CommonTemplate } from '@/dp__templates/common-template/CommonTemplate'
 import { AuthProvider } from '@/providers/AuthenProvider'
 import { ReactQueryProvider } from '@/providers/ReactQueryProvider'
 import '@/styles/tailwind.css'
@@ -49,7 +50,9 @@ export default function RootLayout({
     >
       <body className="flex h-full flex-col">
         <ReactQueryProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <CommonTemplate>{children}</CommonTemplate>
+          </AuthProvider>
         </ReactQueryProvider>
       </body>
     </html>
